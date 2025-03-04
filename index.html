@@ -3,127 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Calculator</title>
+    <title>Landing Page</title>
     <style>
+        /* Basic Styling */
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f4f4f4;
-        }
-
-        .calculator {
-            width: 300px;
-            background: rgb(9, 9, 9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            padding: 0;
             text-align: center;
         }
 
-        #display {
-            width: 95%;
-            height: 50px;
-            font-size: 2em;
-            text-align: right;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            background: #a7a6a6;
+        /* Header */
+        header {
+            background: #c772f1;
+            color: white;
+            padding: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            color: #a276b8;
+            text-decoration: none;
             border-radius: 5px;
-            align-items:center ;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        button {
-            padding: 15px;
-            font-size: 1.2em;
-            border: none;
+            margin-top: 10px;
             cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+        }
+
+        #features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature-box {
+            background: #f4f4f4;
+            padding: 20px;
+            width: 30%;
             border-radius: 5px;
-            background: #e7b0d3;
-            color: rgb(245, 241, 241);
-            transition: 0.2s;
         }
 
-        button:hover {
-            background: #ef8fcc;
+        /* Call to Action */
+        #cta {
+            background: #e2c49c;
+            color: white;
         }
 
-        .operator {
-            background: #656564;
+        #cta .btn {
+            background: white;
+            color: #ff9800;
         }
 
-        .operator:hover {
-            background: #454544;
+        /* Contact Form */
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 auto;
         }
 
-        .clear, .delete {
-            background: #94edf1;
+        input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
         }
 
-        .clear:hover, .delete:hover {
-            background: #507b7e;
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="calculator">
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button class="delete" onclick="deleteLast()">⌫</button>
-            <button class="operator" onclick="appendValue('/')">/</button>
-            <button class="operator" onclick="appendValue('')"></button>
-            
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button class="operator" onclick="appendValue('-')">-</button>
-            
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button class="operator" onclick="appendValue('+')">+</button>
-            
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button class="equal" onclick="calculateResult()">=</button>
-            
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to My Landing Page</h1>
+        <p>Your one-stop solution for web development</p>
+        <button class="btn" onclick="showAlert()">Learn More</button>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We provide top-notch web solutions tailored to your needs.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2>Why Choose Us?</h2>
+        <div class="feature-box">
+            <h3>Fast Performance</h3>
+            <p>Optimized websites for speed and efficiency.</p>
         </div>
-    </div>
+        <div class="feature-box">
+            <h3>Responsive Design</h3>
+            <p>Looks great on all devices.</p>
+        </div>
+        <div class="feature-box">
+            <h3>SEO Optimized</h3>
+            <p>Rank higher on search engines.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="cta">
+        <h2>Get Started Today!</h2>
+        <p>Join us and build something amazing.</p>
+        <button class="btn" onclick="showAlert()">Contact Us</button>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="button" class="btn" onclick="submitForm()">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
 
     <script>
-        let display = document.getElementById("display");
-
-        function appendValue(value) {
-            display.value += value;
+        function showAlert() {
+            alert("Thank you for your interest! We'll get back to you soon.");
         }
 
-        function clearDisplay() {
-            display.value = "";
-        }
+        function submitForm() {
+            let name = document.getElementById("Vatambeti Thanushka").value;
+            let email = document.getElementById("vatambetithanushka@gmail.com").value;
+            let message = document.getElementById("message").value;
 
-        function deleteLast() {
-            display.value = display.value.slice(0, -1);
-        }
-
-        function calculateResult() {
-            try {
-                display.value = eval(display.value);
-            } catch (error) {
-                alert("Invalid Input");
+            if (name && email && message) {
+                alert("Thank you, ${name}! Your message has been received.");
+                document.getElementById("contact-form").reset();
+            } else {
+                alert("Please fill in all fields before submitting.");
             }
         }
     </script>
